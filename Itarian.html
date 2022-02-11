@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang = "ja">
+    <head>
+        <meta charset = "UTF-8">
+        <title>ItarianRestran</title>
+        <link rel = "stylesheet" href = "Itarian.css">
+        <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+  
+    </head>
+    <body>
+        <header class = "window100">
+            <img src = "images/logo.png">
+            <ul>
+                <li><a href = "#">HOME</a></li>
+                <li><a href = "#">ABOUT</a></li>
+                <li><a href = "#">MENU</a></li>
+                <li><a href = "#">SHOP</a></li>
+                <li><a href = "#">GALLERY</a></li>
+                <li><a href = "#">CONTACT</a></li>
+            </ul>
+        </header>
+
+        <header class = "window50">
+            <nav id = "nav">
+                <ul>
+                    <li><a href = "#">HOME</a></li>
+                    <li><a href = "#">ABOUT</a></li>
+                    <li><a href = "#">MENU</a></li>
+                    <li><a href = "#">SHOP</a></li>
+                    <li><a href = "#">GALLERY</a></li>
+                    <li><a href = "#">CONTACT</a></li>
+                </ul>
+            </nav>
+            <div id = "hamburger">
+                <span class = "inner_line" id = "line1"></span>
+                <span class = "inner_line" id = "line2"></span>
+                <span class = "inner_line" id = "line3"></span>
+            </div>
+            <img src = "images/logo.png">
+        </header>
+
+        <main>
+            <img src = "images/mainlogo.png">
+            <div class = "scrolldown4"><span>Scrollb</span></div>
+        </main>
+
+        
+        <div class = "container">
+            <div class = "single-item">
+              <div>
+                <img src = "images/slide1.png">
+              </div>
+              <div>
+                <img src = "images/slide2.png">
+              </div>
+              <div>
+                <img src = "images/slide3.png">
+              </div>
+            </div>
+          </div>
+        <section class = "menu">
+            <h1>MENU</h1>
+            <article class = "menu1">
+                <img src = "images/menu1.jpg">
+                <div class = "content1">
+                    <h2>salada</h2>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト<br>
+                        テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </div>
+            </article>
+            <article class = "menu2">
+                <div class = "content2">
+                    <h2>pasta</h2>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト<br>
+                        テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </div>
+                <img src = "images/menu2.jpg">
+            </article>
+            <article class = "menu3">
+                <img src = "images/menu3.jpg">
+                <div class = "content3">
+                    <h2>pizza</h2>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト<br>
+                        テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </div>
+            </article>
+        </section>
+        <section class = "consept">
+            <h1>CONSEPT</h1>
+            <p>aa</p>
+        </section>
+        <footer>
+            <p>aaa</p>
+        </footer>
+        <script src = "Itarian.js"></script>
+        <script src = "jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="slick/slick.min.js"></script>
+        <script>
+            $(function(){
+                $('.single-item').slick({
+                    accessibility: true,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                    dots: true,
+                    fade: true,
+                });
+            });
+        </script>
+    </body>
+</html>
