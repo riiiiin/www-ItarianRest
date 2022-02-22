@@ -244,62 +244,67 @@ main img{
     padding-top: 40px;
     font-size: 400%;
 }
-.menu article{
-    display: flex;
+
+.menu1,.menu2,.menu3 {
+    position: relative;
 }
-.menu img{
-    width: 50vw;
+.menu1,.menu3 {
+    left: -50px;
 }
-.menu .content1,.content2,.content3{
+.menu2 {
+    right: -50px;
+}
+
+.m article {
     display: flex;
-    flex-flow: column;
     justify-content: center;
-    align-items: center;
-    width: 50vw;
+    align-items:center;
+    margin: 30px;
 }
-.menu h2{
+
+.m .content1 {
+    color: white;
     text-align: center;
-    font-family:'Times New Roman', Times, serif;
-    font-size: 60px;
-    margin: 0 10vw;
+    position: relative;
+    top: 100px;
+    right: 100px;
+    width: auto;
+    height: 250px;
+    background-color: #6d0d0d;
 }
-.menu p{
-    width: 30vw;
-}
-.menu1{
-    background-color: rgba(105, 0, 0);
+.m .content2 {
     color: white;
+    text-align: center;
+    position: relative;
+    top: 100px;
+    left: 100px;
+    width: auto;
+    height: 250px;
+    background-color: #0a610f;
 }
-.menu2{
-    background-color: rgb(109, 109, 0);
+.m .content3 {
     color: white;
+    text-align: center;
+    position: relative;
+    top: 100px;
+    right: 100px;
+    width: 700px;
+    height: 250px;
+    background-color: #291379;
 }
-.menu3{
-    background-color: rgb(0, 0, 112);
-    color: white;
+
+.menu img{
+    width: 700px;
+    margin: 50px;
 }
-@media screen and (max-width: 1000px) {
-    .menu img{
-        width: 100vw;
-    }
-    .menu1,.menu3{
-        flex-flow: column;
-    }
-    .menu2{
-        flex-direction: column-reverse;
-    }
-    .menu article h2{
-        position: relative;
-        top: 7vh;
-    }
-    .menu p{
-        position: relative;
-        bottom: 5vh;
-        left: 50vw;
-        width: 40vw;
-        margin: 5px 10vw;
-    }
-  }
+
+.m article p{
+    display: block;
+    margin: 20px;
+    text-align: left;
+    line-height: 1cm;
+}
+
   /*Consept=========================*/
   .consept {
       display: flex;
