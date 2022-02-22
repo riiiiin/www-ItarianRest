@@ -20,7 +20,10 @@ body{
 .window100 img{
     align-items: left;
     display: inline-block;
-    width: 250px;
+    width: 100px;
+    height: 60px;
+    margin-right: 100px;
+    margin-left: 30px;
 }
 .window100 ul{
     display: flex;
@@ -243,6 +246,41 @@ main img{
     text-align: center;
     padding-top: 40px;
     font-size: 400%;
+    display: inline-block;
+    position: relative;
+}
+
+.consept h1::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    display: inline-block;
+    width: 60px;
+    height: 3px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-color: black;
+}
+
+.menu h1::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    display: inline-block;
+    width: 60px;
+    height: 3px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-color: black;
+}
+
+.menu {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 50px;
 }
 
 .menu1,.menu2,.menu3 {
@@ -268,7 +306,7 @@ main img{
     position: relative;
     top: 100px;
     right: 100px;
-    width: auto;
+    width: 500px;
     height: 250px;
     background-color: #6d0d0d;
 }
@@ -278,7 +316,7 @@ main img{
     position: relative;
     top: 100px;
     left: 100px;
-    width: auto;
+    width: 500px;
     height: 250px;
     background-color: #0a610f;
 }
@@ -288,13 +326,13 @@ main img{
     position: relative;
     top: 100px;
     right: 100px;
-    width: 700px;
+    width: 500px;
     height: 250px;
-    background-color: #291379;
+    background-color: #21038d;
 }
 
 .menu img{
-    width: 700px;
+    width: 600px;
     margin: 50px;
 }
 
@@ -347,6 +385,13 @@ main img{
       flex-flow: column;
       justify-content: center;
       padding: 100px;
-      background-color: rgba(253, 255, 255, 0.5);
-      margin: 2em auto; 
+      background-color: rgba(255, 255, 255, 0.5);
+      margin: 2em auto;
+      box-shadow: 0 0px 1px 0px black;
+  }
+
+  /*access========================================*/
+  .access {
+      height: 60%;/*仮*/
+      background-color: #000000;
   }
