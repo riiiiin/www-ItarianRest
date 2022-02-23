@@ -242,7 +242,7 @@ main img{
       opacity: 1;
   }
 /*menu=====================================*/
-.menu h1,.consept h1{
+.menu h1,.consept h1,.access h1{
     text-align: center;
     padding-top: 40px;
     font-size: 400%;
@@ -250,7 +250,7 @@ main img{
     position: relative;
 }
 
-.consept h1::before {
+.menu h1::before,.consept h1::before,.access h1::before {
     content: '';
     position: absolute;
     bottom: -15px;
@@ -261,20 +261,14 @@ main img{
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     background-color: black;
+}
+.access h1{
+    color: white;
+}
+.access h1::before{
+    background-color: white;
 }
 
-.menu h1::before {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    display: inline-block;
-    width: 60px;
-    height: 3px;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    background-color: black;
-}
 
 .menu {
     display: flex;
@@ -393,5 +387,21 @@ main img{
   /*access========================================*/
   .access {
       height: 60%;/*仮*/
-      background-color: #000000;
+      background-color: rgba(0,0,0,.5);
+      display: flex;
+      flex-flow: column;
+      align-items: center;
   }
+  .access h1{
+      display: block;
+  }
+  .address{
+      display: flex;
+  }
+  .address ul{
+      display: block;
+  }
+  .address iframe{
+      display: block;
+  }
+  
