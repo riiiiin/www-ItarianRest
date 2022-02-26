@@ -400,8 +400,22 @@ main img{
   }
   .address ul{
       display: block;
+      width: 350px;
+      height: 400px;
+      list-style: none;
+      line-height: 1.5cm;
+      font-size: 15px;
+      background-color: rgba(255, 255, 255, 0.7);
+  }
+  .address ul li{
+      margin-top: 10px;
+      display: block;
+    float: left;
+      width: 50%;
   }
   .address iframe{
       display: block;
+      margin-left: 100px;
+      margin-bottom: 100px;
   }
   
