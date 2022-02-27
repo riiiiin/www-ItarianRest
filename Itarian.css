@@ -3,6 +3,7 @@ body{
     overflow-x: hidden;
     background-image: url(images/background.png);
     margin: 0;
+    font-family: "Century"	;
 }
 /*header==================================*/
 /*window100===============================*/
@@ -418,4 +419,14 @@ main img{
       margin-left: 100px;
       margin-bottom: 100px;
   }
-  
+  /*footer=========================================*/
+  footer{
+      background-color: #000000;
+      color:white;
+      padding:20px;
+      margin: 0;
+      opacity: .7;
+  }
+  footer p{
+      text-align: center;
+  }
