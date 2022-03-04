@@ -3,6 +3,7 @@ body{
     overflow-x: hidden;
     background-image: url(images/background.png);
     margin: 0;
+    font-family: cursive;
 }
 /*header==================================*/
 /*window100===============================*/
@@ -391,6 +392,7 @@ main img{
       display: flex;
       flex-flow: column;
       align-items: center;
+      z-index: -1;
   }
   .access h1{
       display: block;
@@ -418,4 +420,40 @@ main img{
       margin-left: 100px;
       margin-bottom: 100px;
   }
-  
+  /*footer==================================================*/
+  footer {
+    width: 100vw;
+    height: 100px;
+    overflow-y: hidden;
+ 
+  }
+  footer div{
+      text-align: center;
+      background-color: black;
+      width: 100vw;
+      height: 100px;
+      position: relative;
+      bottom: -50px;
+      transition: all .7s;
+      border-radius: 8px 8px 0 0;
+  }
+  footer button{
+      background-color: #000000;
+      color: white;
+      position: relative;
+      top: -40px;
+      width: 200px;
+      height: 40px;
+      border: none;
+      border-radius: 8px 8px 0 0;
+      
+  }
+  footer div:hover{
+      bottom: 0;
+  }
+  footer ul{
+      position: relative;
+      top: -30px;
+      list-style: none;
+      color: white;
+  }
