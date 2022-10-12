@@ -6,7 +6,13 @@ import com.ibm.rally.*;
  */
 public class RallyCar extends Car {
 	IObject checkPoints[];
-	int nextNo;
+	IObject gasStations[];
+	ICar opponents[];
+	
+	int waitBack = 0;
+	int nextNo, prevNo;
+	boolean gasFlag = false;
+	boolean startFlag = false;
 	/**
 	 * @see com.ibm.rally.Car#getName()
 	 */
@@ -34,7 +40,15 @@ public class RallyCar extends Car {
 	public void initialize() {
 		// put implementation here
 		checkPoints = getCheckpoints();
+		gasStations = getFuelDepots();
+		
+		startFlag = true;
+		prevNo = getPreviousCheckpoint();
 		nextNo = getNearIObject(checkPoints);
+
+		if (getDistanceTo(checkPoints[nextNo]) < 80){
+			nextNo++;
+		}
 	}
 
 	/**
@@ -45,41 +59,112 @@ public class RallyCar extends Car {
 	public void move(int lastMoveTime, boolean hitWall, ICar collidedWithCar, ICar hitBySpareTire) {
 		// put implementation here
 		
-		int targetNo;
+		opponents = getOpponents();
+	
 		
-		if (getPreviousCheckpoint() == -1) {
-			targetNo = nextNo;
+		if (collidedWithCar != null && waitBack == 0 && gasFlag == false) {
+			waitBack = 13;
+		}
+		if (hitWall == true && waitBack == 0 && gasFlag == false) {
+			waitBack = 3;
+		}
+		
+		if (getFuel() < 50 && gasFlag == false) {
+			prevNo = getPreviousCheckpoint();
+			gasFlag = true;
+		}
+		
+		if (waitBack > 0) {
+			waitBack--;
+			back();
+		} else if (gasFlag == true) {
+			gotoGas(getNearIObject(gasStations));
 		} else {
-			targetNo = getPreviousCheckpoint() + 1;
+			int targetNo;
+			if (startFlag == true) {
+				targetNo = nextNo;
+				if (prevNo != getPreviousCheckpoint()) {
+					startFlag = false;
+				}
+			} else {
+				targetNo = getPreviousCheckpoint() + 1;
+			}
+			for (int i = 0; i < 100; i++){
+				
+			}
+			if (targetNo >= checkPoints.length) {
+				targetNo = 0;
+			}
+			drive(checkPoints[targetNo]);
 		}
-		
-		if ( targetNo >= checkPoints.length) {
-			targetNo = 0;
-		}
-		
-		drive(checkPoints[targetNo]);
-		setLight(checkPoints[targetNo]);
-		protectMode();
+
 	}
 	
-	private void drive(double px, double py){
-		int target = getHeadingTo(px, py) - getHeading();
+
+	
+	private void drive(IObject target){
+
+		double rate1 = 0.8, rate2 = 0.9;
+		int targetAngle = getHeadingTo(target) - getHeading();
+		targetAngle = changeAngle(targetAngle);
 		
-		if ( target > 0){
-			setSteeringSetting(10);
+		if (targetAngle > 10) {
+			setSteeringSetting(MAX_STEER_RIGHT);
+			setThrottle((int)(MAX_THROTTLE * rate2));
+		} else if (targetAngle < -10) {
+			setSteeringSetting(MAX_STEER_LEFT);
+			setThrottle((int)(MAX_THROTTLE * rate2));
+		} else if (getDistanceTo(target) > 30) {
+			setSteeringSetting(targetAngle / 2);
+			setThrottle(MAX_THROTTLE);
+		} else {
+			setSteeringSetting(targetAngle);
+			setThrottle((int)(MAX_THROTTLE * rate1));
 		}
-		if ( target < 0){
-			setSteeringSetting(-10);
-		}
-		if ( target == 0){
+	}
+	
+	private void gotoGas(int number) {
+		int targetAngle = getHeadingTo(gasStations[number]) - getHeading();
+		targetAngle = changeAngle(targetAngle);
+		double distance = getDistanceTo(gasStations[number]);
+		
+		if (getFuel() > 80) {
+			gasFlag = false;
+			startFlag = true;
+			nextNo = getNearIObject(checkPoints);
+			if (getDistanceTo(checkPoints[nextNo]) < 80) {
+				nextNo++;
+			}
+		} else if (distance < 25) {
+			if (isInProtectMode() == false) {
+				enterProtectMode();
+			}
 			setSteeringSetting(0);
+			setThrottle(0);
+			opponents = getOpponents();
+			int oppoNo = getNearIObject(opponents);
+			if (getDistanceTo(opponents[oppoNo]) < 80) {
+				attack(opponents[oppoNo]);
+			}
+		} else if (distance < 80) {
+			setSteeringSetting(targetAngle);
+			setThrottle(40);
+		} else if (distance < 200) {
+			setSteeringSetting(targetAngle);
+			setThrottle(60);
+		} else {
+			drive(gasStations[number]);
 		}
-		
-		setThrottle(100);
 	}
 	
-	private void drive(IObject p){
-		drive(p.getX(), p.getY());
+	private int changeAngle(int angle) {
+		if (angle > 180) {
+			angle = angle - 360;
+		}
+		if (angle < -180) {
+			angle = angle + 360;
+		}
+		return angle;
 	}
 	
 	private void setLight(IObject p){
@@ -107,8 +192,7 @@ public class RallyCar extends Car {
 	}
 	
 	
-	public void protectMode() {
-		ICar[] enemys = getOpponents();
+	public void protectMode(ICar[] enemys) {
 		
 		for ( int i = 0; i < enemys.length; i++) {
 			double distance = getDistanceTo(enemys[i]);
@@ -116,5 +200,25 @@ public class RallyCar extends Car {
 				enterProtectMode();
 			} 
 		}
+	}
+	
+	private void attack(ICar icar) {
+		int enemyAngle = getHeadingTo(icar) - getHeading();
+		if (enemyAngle > -30 && enemyAngle < 30 && isReadyToThrowSpareTire()) {
+			throwSpareTire();
+		}
+	}
+	
+	private void back() {
+		opponents = getOpponents();
+		int oppoNo = getNearIObject(opponents);
+		int targetAngle = getHeadingTo(opponents[oppoNo]) - getHeading();
+		if (targetAngle > 0) {
+			setSteeringSetting(10);
+		} else {
+			setSteeringSetting(-10);
+		}
+		setThrottle(MIN_THROTTLE);
+		attack(opponents[oppoNo]);
 	}
 }
